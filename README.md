@@ -33,6 +33,15 @@ D:/Project AI/Vegetable Images/
         ├── Bitter_Gourd/
         ├── ...
 ```
+### Vegetable Image Dataset
+
+```
+https://www.kaggle.com/datasets/misrakahmed/vegetable-image-dataset/
+
+```
+
+
+
 ## Notebook Structure
  **1. Import Libraries**
  ```python
