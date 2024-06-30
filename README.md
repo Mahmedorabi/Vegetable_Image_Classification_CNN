@@ -72,6 +72,9 @@ def plot_images(class_name):
         plt.axis('off')
     plt.show()
 ```
+![data visual vege](https://github.com/Mahmedorabi/Vegetable_Image_Classification_CNN/assets/105740465/30458995-10fe-4342-b863-0b5edb00cd81)
+
+
 ## Data Preprocessing 
 ```python
 data_generator=ImageDataGenerator(rescale=1/255)
@@ -148,8 +151,17 @@ plt.show()
 
 
 
+![model visual Vege](https://github.com/Mahmedorabi/Vegetable_Image_Classification_CNN/assets/105740465/3c7a4a22-68e5-4381-95b7-eb0558314866)
 
+## Usage
+### To use this notebook:
 
+**1. Ensure your dataset is correctly placed in the specified directories.**<br>
+**2. Run each cell in the notebook sequentially to build and train the CNN model.**<br>
+**3. Use the plot_images function to visualize the images and their categories.**
+
+## Results
+The notebook will output the accuracy and loss of the model during training and validation. It will also visualize some sample images from the dataset along with their predicted and actual labels.
 
 
 
