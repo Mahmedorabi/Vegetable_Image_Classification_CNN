@@ -72,6 +72,79 @@ def plot_images(class_name):
         plt.axis('off')
     plt.show()
 ```
+## Data Preprocessing 
+```python
+data_generator=ImageDataGenerator(rescale=1/255)
+train_data=data_generator.flow_from_directory(train_path
+                                              ,target_size=(224,224),
+                                              batch_size=32,
+                                              class_mode='categorical',
+                                              shuffle=True)
+
+test_data=data_generator.flow_from_directory(test_path,
+                                             batch_size=32,
+                                             target_size=(224,224),
+                                             class_mode='categorical',
+                                             shuffle=True)
+
+validation_data=data_generator.flow_from_directory(validation_path,
+                                                   batch_size=32,
+                                                   class_mode='categorical',
+                                                   shuffle=True,
+                                                   target_size=(224,224))
+```
+## Build Model
+**1.Add Layers**
+```python
+# Add Layers into model
+
+# Convolutional Layer
+model.add(Conv2D(filters=32,kernel_size=3,padding='same',activation='relu',input_shape=[224,224,3]))
+
+# Pooling Layer
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+# Convolutional Layer
+model.add(Conv2D(filters=32,kernel_size=3,padding='same',activation='relu'))
+
+# Pooling Layer
+model.add(MaxPooling2D(pool_size=(2,2)))
+
+# Flatten Layer 
+model.add(Flatten())
+
+# Fully Connected Layer
+model.add(Dense(128,activation='relu'))
+# model.add(Dense(64,activation='relu'))
+
+# Output Layer
+model.add(Dense(15,activation='softmax'))
+```
+**2. Compile model**
+```python
+model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+```
+**3. Fit model**
+```python
+model_hist=model.fit(train_data,
+                     validation_data=validation_data,epochs=5)
+```
+## Model Visualization
+````python
+fig,ax=plt.subplots(1,2,figsize=(15,5))
+fig.suptitle("Model Visualization",fontsize=20)
+ax[0].plot(model_hist.history['loss'],label='Training Loss')
+ax[0].plot(model_hist.history['val_loss'],label='Testing Loss')
+ax[0].set_title("Training Loss VS. Testing Loss")
+
+ax[1].plot(model_hist.history['accuracy'],label='Training Accuracy')
+ax[1].plot(model_hist.history['val_accuracy'],label='Testing Accuracy')
+ax[1].set_title("Training Accuracy VS. Testing Accuracy")
+plt.show()
+````
+
 
 
 
